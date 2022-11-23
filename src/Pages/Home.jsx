@@ -1,15 +1,36 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import backgrounds from "../bg";
+import * as htmlToImage from "html-to-image";
 import Design from "../components/Design";
 import Navbar from "../components/Navbar";
 import brace from "./../assets/dsc.png";
+import { width } from "@mui/system";
 export default function Home() {
   const [state, setState] = useState({
     nom: "",
     img: "",
     bg: backgrounds[0],
   });
+
+  const handleExport = () => {
+    if (state.img === "" || state.nom === "") {
+      alert("Veuillez saisir un nom ou choisir une image en mode portrait");
+    } else {
+      let node = document.getElementById("exporting");
+      htmlToImage
+        .toPng(node)
+        .then(function (dataUrl) {
+          const link = document.createElement("a");
+          link.download = `${state.nom} DevFest Kivu`;
+          link.href = dataUrl;
+          link.click();
+        })
+        .catch(function (error) {
+          console.error("oops, something went wrong!", error);
+        });
+    }
+  };
   console.log(state);
   return (
     <div>
@@ -36,104 +57,128 @@ export default function Home() {
               paddingBottom: 10,
             }}
           >
-            <Design state={state} set={setState} />
-            <Box
-              flex={1}
-              height="70vh"
-              sx={{
-                border: "1px solid #333",
-                padding: 2,
-              }}
-            >
-              <Box
-                sx={{
-                  width: { md: "96%", sm: "98%", lg: "100%" },
-                  height: "100%",
+            <Stack>
+              <Design state={state} set={setState} />
+              <button
+                style={{
+                  width: "90%",
+                  marginTop: 30,
+                  padding: "10px 9px",
                   margin: "auto",
-                  backgroundImage: `url("${state.bg}")`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  position: "relative",
+                  border: "none",
+                  background: "#4CAF50",
+                  color: "#fff",
+                  cursor: "pointer",
+                  fontSize: 16,
+                }}
+                onClick={handleExport}
+              >
+                Télécharger
+              </button>
+            </Stack>
+            {state.img && (
+              <Box
+                flex={1}
+                sx={{
+                  height: { lg: "80vh", sm: "90vh", xs: "90%" },
+                  border: "1px solid #333",
+                  padding: 2,
+                  marginTop: { sm: 4, xs: 4 },
                 }}
               >
-                <Typography
-                  sx={{
-                    position: "absolute",
-                    bottom: 4,
-                    left: 20,
-                    color: "#fff",
-                  }}
-                >
-                  #DevFestKivu22
-                </Typography>
                 <Box
+                  id="exporting"
                   sx={{
-                    width: { md: "60%", sm: "40%" },
-                    background: "#fff",
-                    padding: 2,
+                    width: { md: "100%", sm: "100%", lg: "100%" },
+                    height: "100%",
+                    margin: "auto",
+                    backgroundImage: `url("${state.bg}")`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     position: "relative",
+                    padding: { sm: 2, xs: 2 },
                   }}
                 >
-                  <img
-                    src={brace}
-                    alt="brace"
-                    style={{
-                      top: -25,
-                      left: -25,
-                      width: 90,
+                  <Typography
+                    sx={{
                       position: "absolute",
+                      bottom: 4,
+                      left: 20,
+                      color: "#fff",
                     }}
-                  />
-                  <img
-                    src={state.img}
-                    alt="profile"
-                    width="100%"
-                    style={{
-                      margin: "auto",
-                      maxHeight: { md: 250, sm: 80, xs: 80 },
+                  >
+                    #DevFestKivu22
+                  </Typography>
+                  <Box
+                    sx={{
+                      width: { md: "60%", sm: "40%" },
+                      padding: 2,
+                      background: "#fff",
+                      position: "relative",
                     }}
-                  />
-                  <Box>
-                    <Typography
-                      variant="h3"
-                      pt={2}
-                      sx={{
-                        textAlign: "center",
-                        fontSize: 24,
-                        fontWeight: "700",
-
-                        fontFamily: "Google Sans",
-                      }}
-                    >
-                      {state.nom}
-                    </Typography>
-                    <Typography
+                  >
+                    <img
+                      src={brace}
+                      alt="brace"
                       style={{
-                        textAlign: "center",
-                        paddingTop: 5,
-                        color: " #E57373",
+                        top: { lg: -40, sm: -30, xs: -30 },
+                        left: -25,
+                        width: 90,
+                        position: "absolute",
                       }}
-                    >
-                      Je serais au devfest kivu 2022
-                    </Typography>
-
-                    <Typography
+                    />
+                    <img
+                      src={state.img}
+                      alt="profile"
+                      width="100%"
                       style={{
-                        textAlign: "center",
-                        fontFamily: "Google Sans",
-                        paddingTop: 5,
-                        color: "#2228",
+                        margin: "auto",
+                        maxHeight: { md: 250, sm: 80, xs: 80, lg: 200 },
                       }}
-                    >
-                      Google Developer Groups
-                    </Typography>
+                    />
+                    <Box>
+                      <Typography
+                        variant="h3"
+                        pt={2}
+                        sx={{
+                          textAlign: "center",
+                          fontSize: 24,
+                          fontWeight: "700",
+
+                          fontFamily: "Google Sans",
+                        }}
+                      >
+                        {state.nom}
+                      </Typography>
+                      <Typography
+                        style={{
+                          textAlign: "center",
+                          paddingTop: 5,
+                          color: " #E57373",
+                          fontSize: { xs: 10, sm: 10 },
+                        }}
+                      >
+                        Je serais au devfest kivu 2022
+                      </Typography>
+
+                      <Typography
+                        style={{
+                          textAlign: "center",
+                          fontFamily: "Google Sans",
+                          paddingTop: 5,
+                          color: "#2228",
+                        }}
+                      >
+                        Google Developer Groups
+                      </Typography>
+                    </Box>
                   </Box>
                 </Box>
               </Box>
-            </Box>
+            )}
           </Stack>
         </Box>
       </Container>
