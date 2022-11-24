@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Container,
-  Divider,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, Container, Divider, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import backgrounds from "../bg";
 import * as htmlToImage from "html-to-image";
@@ -53,7 +46,7 @@ export default function Home() {
           }}
         >
           Nous serons ravis de vous retrouver au plus grand fesival des
-          dévéloppeurs ce 17 décembre 2022.
+          dévéloppeurs ce 17 décembre 2022 à Bukavu.
         </p>
         <Box>
           <Stack
@@ -67,6 +60,7 @@ export default function Home() {
             <Stack>
               <Design state={state} set={setState} />
               <button
+                className="btn"
                 style={{
                   width: "90%",
                   marginTop: 30,
@@ -186,10 +180,11 @@ export default function Home() {
                           fontFamily: "Google Sans",
                         }}
                       >
-                        Je serais au{" "}
+                        Participant au{" "}
                         <p
                           style={{
                             fontFamily: "Google Sans",
+                            fontWeight: "900",
                             textTransform: "uppercase",
                           }}
                         >
@@ -201,11 +196,12 @@ export default function Home() {
                         style={{
                           textAlign: "center",
                           fontFamily: "Google Sans",
-                          paddingTop: 10,
+                          paddingTop: 15,
+                          fontSize: { md: 16, lg: 16, sm: 12, xs: 12 },
                           color: "#2228",
                         }}
                       >
-                        Google Developers Group Bukavu
+                        Google Developers Group Bukavu & Uvira
                       </Typography>
                     </Box>
                   </Box>
@@ -215,6 +211,14 @@ export default function Home() {
           </Stack>
         </Box>
         <Box mt={2} p={3}>
+          <Stack>
+            <Typography p={1}>
+              Reservez votre place ici :{" "}
+              <a href="https://gdg.community.dev/events/details/google-gdg-uvira-presents-devfest-kivu-2022/">
+                Ici
+              </a>
+            </Typography>
+          </Stack>
           <Divider />
           <p style={{ textAlign: "center", paddingTop: 5 }}>
             Designed by tacite

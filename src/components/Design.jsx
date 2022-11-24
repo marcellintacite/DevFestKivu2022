@@ -1,10 +1,5 @@
-import {
-  ContactSupportOutlined,
-  Home,
-  UploadFile,
-  UploadFileOutlined,
-} from "@mui/icons-material";
-import { Checkbox, Stack, styled, TextField, Typography } from "@mui/material";
+import { UploadFile } from "@mui/icons-material";
+import { Checkbox, Stack, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import backgrounds from "../bg";
