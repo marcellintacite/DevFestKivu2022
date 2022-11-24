@@ -4,7 +4,7 @@ import {
   UploadFile,
   UploadFileOutlined,
 } from "@mui/icons-material";
-import { Stack, styled, TextField, Typography } from "@mui/material";
+import { Checkbox, Stack, styled, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import backgrounds from "../bg";
@@ -14,6 +14,10 @@ export default function Design({ state, set }) {
   const handleChange = (e) => {
     const nd = { ...state, nom: e.target.value };
     set(nd);
+  };
+  const handleCircle = (e) => {
+    const n = { ...state, circle: e.target.checked };
+    set(n);
   };
   const handleFile = (e) => {
     const url = URL.createObjectURL(e.target.files[0]);
@@ -28,7 +32,16 @@ export default function Design({ state, set }) {
   return (
     <div>
       <Box flex={1} mt={2} mr={2}>
-        <Typography>Générer automatiquement votre design</Typography>
+        <Typography
+          sx={{
+            fontWeight: "400",
+            fontSize: 18,
+            lineHeight: "1.4em",
+            color: "#333",
+          }}
+        >
+          Générer automatiquement votre design
+        </Typography>
 
         <Stack>
           <Box>
@@ -109,7 +122,7 @@ export default function Design({ state, set }) {
                 width: { lg: "70%", sm: "95%", xs: "95%" },
               }}
             >
-              <Typography sx={{ fontSize: 11 }}>
+              <Typography sx={{ fontSize: 12 }}>
                 Pour un meilleur rendu de votre image, veuillez séléctionner une
                 image en mode paysage
               </Typography>
@@ -138,6 +151,20 @@ export default function Design({ state, set }) {
                   </Box>
                 ))}
               </Stack>
+            </Box>
+            <Box mt={2} mb={2}>
+              <Checkbox id="check" onChange={(e) => handleCircle(e)} />
+              <label
+                htmlFor="check"
+                sx={{
+                  fontWeight: "400",
+                  fontSize: 18,
+                  lineHeight: "1.4em",
+                  color: "#333",
+                }}
+              >
+                Image en rond
+              </label>
             </Box>
           </Box>
         </Stack>

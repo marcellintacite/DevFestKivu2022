@@ -1,16 +1,23 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import backgrounds from "../bg";
 import * as htmlToImage from "html-to-image";
 import Design from "../components/Design";
 import Navbar from "../components/Navbar";
 import brace from "./../assets/dsc.png";
-import { width } from "@mui/system";
 export default function Home() {
   const [state, setState] = useState({
     nom: "",
     img: "",
     bg: backgrounds[0],
+    circle: false,
   });
 
   const handleExport = () => {
@@ -106,8 +113,9 @@ export default function Home() {
                     sx={{
                       position: "absolute",
                       bottom: 4,
-                      left: 20,
+                      left: { md: 20, sm: 10 },
                       color: "#fff",
+                      fontSize: { md: 16, sm: 10, xs: 10 },
                     }}
                   >
                     #DevFestKivu22
@@ -118,24 +126,30 @@ export default function Home() {
                       padding: 2,
                       background: "#fff",
                       position: "relative",
+                      display: "flex",
+                      alignItems: "center",
+                      flexDirection: "column",
                     }}
                   >
                     <img
                       src={brace}
                       alt="brace"
                       style={{
-                        top: { lg: -40, sm: -30, xs: -30 },
+                        top: { lg: -50, sm: -40, xs: -30 },
                         left: -25,
                         width: 90,
+                        // right: 0,
                         position: "absolute",
                       }}
                     />
                     <img
                       src={state.img}
                       alt="profile"
-                      width="100%"
                       style={{
+                        width: state.circle ? 250 : "90%",
+                        height: state.circle ? 250 : "auto",
                         margin: "auto",
+                        borderRadius: state.circle ? "50%" : 5,
                         maxHeight: { md: 250, sm: 80, xs: 80, lg: 200 },
                       }}
                     />
@@ -157,11 +171,20 @@ export default function Home() {
                         style={{
                           textAlign: "center",
                           paddingTop: 5,
+
                           color: " #E57373",
                           fontSize: { xs: 10, sm: 10 },
                         }}
                       >
-                        Je serais au devfest kivu 2022
+                        Je serais au{" "}
+                        <p
+                          style={{
+                            fontFamily: "Google Sans",
+                            textTransform: "uppercase",
+                          }}
+                        >
+                          devfest kivu 2022
+                        </p>
                       </Typography>
 
                       <Typography
@@ -172,7 +195,7 @@ export default function Home() {
                           color: "#2228",
                         }}
                       >
-                        Google Developer Groups
+                        Google Developers Group Bukavu
                       </Typography>
                     </Box>
                   </Box>
@@ -180,6 +203,12 @@ export default function Home() {
               </Box>
             )}
           </Stack>
+        </Box>
+        <Box mt={2} p={3}>
+          <Divider />
+          <p style={{ textAlign: "center", paddingTop: 5 }}>
+            Designed by tacite
+          </p>
         </Box>
       </Container>
     </div>
