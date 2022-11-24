@@ -142,17 +142,26 @@ export default function Home() {
                         position: "absolute",
                       }}
                     />
-                    <img
-                      src={state.img}
-                      alt="profile"
-                      style={{
-                        width: state.circle ? 250 : "90%",
-                        height: state.circle ? 250 : "auto",
-                        margin: "auto",
-                        borderRadius: state.circle ? "50%" : 5,
-                        maxHeight: { md: 250, sm: 80, xs: 80, lg: 200 },
+                    <Box
+                      sx={{
+                        width: state.circle ? 170 : "100%",
+                        height: state.circle ? 170 : "auto",
+                        borderRadius: state.circle ? "50%" : 2,
+                        overflow: "hidden",
+                        border: state.circle && "3px solid rgb(255, 255, 161)",
                       }}
-                    />
+                    >
+                      <img
+                        src={state.img}
+                        alt="profile"
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          margin: "auto",
+                          maxHeight: { md: 250, sm: 80, xs: 80, lg: 200 },
+                        }}
+                      />
+                    </Box>
                     <Box>
                       <Typography
                         variant="h3"
@@ -174,6 +183,7 @@ export default function Home() {
 
                           color: " #E57373",
                           fontSize: { xs: 10, sm: 10 },
+                          fontFamily: "Google Sans",
                         }}
                       >
                         Je serais au{" "}
@@ -191,7 +201,7 @@ export default function Home() {
                         style={{
                           textAlign: "center",
                           fontFamily: "Google Sans",
-                          paddingTop: 5,
+                          paddingTop: 10,
                           color: "#2228",
                         }}
                       >
